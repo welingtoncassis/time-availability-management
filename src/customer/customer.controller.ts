@@ -1,8 +1,18 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { QueryDto } from '../common/dtos/query.dto';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDTO } from './dtos/create-customer.dto';
+import { UpdateCustomerDTO } from './dtos/update-customer.dto';
 
 @Controller({
   version: '1',
@@ -25,5 +35,18 @@ export class CustomerController {
   @Post()
   async create(@Body() data: CreateCustomerDTO) {
     return this.customerService.create(data);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateDocumentDTO: UpdateCustomerDTO,
+  ) {
+    return this.customerService.update(id, updateDocumentDTO);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return this.customerService.deleteById(id);
   }
 }

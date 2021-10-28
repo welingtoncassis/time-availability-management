@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { SessionService } from '../session/session.service';
 import { AvailableTimesDTO } from './dtos/available-times.dto';
 import { CreateScheduleDTO } from './dtos/create-schedule.dto';
+import { UpdateScheduleDTO } from './dtos/update-schedule.dto';
 
 const DURATION_SESSION = 60;
 const DURATION_SLOT = 30;
@@ -20,12 +21,14 @@ export class ScheduleService extends BaseService<ScheduleDocument> {
     super(scheduleModel);
   }
 
-  public async createSchedule(createScheduleDTO: CreateScheduleDTO) {
-    const scheduleDay = moment(createScheduleDTO.date);
+  public async verifySchedule(
+    scheduleDTO: CreateScheduleDTO | UpdateScheduleDTO,
+  ) {
+    const scheduleDay = moment(scheduleDTO.date);
 
     const schedules = await this.findAll({
       filter: {
-        professional: createScheduleDTO.professional,
+        professional: scheduleDTO.professional,
         date: {
           $gte: moment(scheduleDay).startOf('day'),
           $lte: moment(scheduleDay).endOf('day'),
@@ -43,7 +46,7 @@ export class ScheduleService extends BaseService<ScheduleDocument> {
       throw new ConflictException('Horário indisponível');
     }
 
-    return this.create(createScheduleDTO);
+    return;
   }
 
   public async availableTimes(availableTimesDTO: AvailableTimesDTO) {

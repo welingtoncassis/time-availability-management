@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { QueryDto } from '../common/dtos/query.dto';
 import { CreateSessionDTO } from './dtos/create-session.dto';
+import { UpdateSessionDTO } from './dtos/update-session.dto';
 import { SessionService } from './session.service';
 
 @Controller({
@@ -25,5 +35,18 @@ export class SessionController {
   @Post()
   async create(@Body() data: CreateSessionDTO) {
     return this.sessionService.create(data);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateDocumentDTO: UpdateSessionDTO,
+  ) {
+    return this.sessionService.update(id, updateDocumentDTO);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return this.sessionService.deleteById(id);
   }
 }

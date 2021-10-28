@@ -8,6 +8,7 @@ export type SessionDocument = Session & mongoose.Document;
 export class Session extends mongoose.Document {
   @Prop({
     required: true,
+    unique: true,
     type: mongoose.Schema.Types.ObjectId,
     ref: Professional.name,
   })
