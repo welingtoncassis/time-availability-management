@@ -1,0 +1,24 @@
+@url = http://localhost:8080/v1/api
+
+
+### agendar sessão
+POST {{url}}/schedule
+Content-Type: application/json
+
+{
+    "professional": "617748b8682a2947603fe4e7",
+    "customer": "6177493f682a2947603fe4eb",
+    "date": "2021-10-29T10:30:00.000"
+}
+
+
+
+### listar horários disponveis para agendar um sessão
+POST {{url}}/schedule/available-times
+Content-Type: application/json
+
+{
+    "idProfessional": "617748b8682a2947603fe4e7",
+    "initDate": "2021-10-29",
+    "endDate": "2021-11-05"
+}

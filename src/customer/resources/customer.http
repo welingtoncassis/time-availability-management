@@ -1,0 +1,11 @@
+@url = http://localhost:8080/v1/api
+
+
+###
+POST {{url}}/customer
+Content-Type: application/json
+
+{
+    "name": "fulano",
+    "email": "fulano@gmail.com",
+}
