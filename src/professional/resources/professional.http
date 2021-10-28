@@ -6,6 +6,6 @@ POST {{url}}/professional
 Content-Type: application/json
 
 {
-    "name": "sicrano",
-    "email": "sicrano@gmail.com",
+    "name": "sicrano2",
+    "email": "sicrano@gmail.com"
 }

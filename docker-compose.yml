@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: npm run start:debug
+    depends_on: 
+      - mongo
+    environment: 
+      DATABASE_HOST: mongodb://db_mongo
+      NODE_ENV: development
+      PORT: 8080
+    ports:
+      - 8080:8080
+      # debugging port
+      - 9229:9229
+  
+  mongo:
+    image: mongo
+    container_name: db_mongo
+    ports:
+      - 27017:27017

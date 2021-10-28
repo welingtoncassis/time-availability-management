@@ -21,6 +21,11 @@
 ## DataBase
 - MongoDB
 
+## Running with docker
+ ```
+ docker-compose up
+```
+
 ## Installation
 
 ```bash

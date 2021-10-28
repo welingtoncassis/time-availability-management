@@ -6,6 +6,6 @@ POST {{url}}/customer
 Content-Type: application/json
 
 {
-    "name": "fulano",
-    "email": "fulano@gmail.com",
+    "name": "fulano2",
+    "email": "fulano@gmail.com"
 }
